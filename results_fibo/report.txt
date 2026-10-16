@@ -1,0 +1,62 @@
+====================================================================================================
+DATA   XAUUSDM15.csv
+       4,136 bars, 2026-08-14 to 2026-10-16
+RULE   period 100, enter at 0.236 (on candle close), target 0.5, stop at 0.0  |  risk 1.0% per trade, max 10.0x
+COSTS  spread 1.95 bps, slippage 0.5 bps/side, swap -0.8/-0.3 bps/day (long/short)
+====================================================================================================
+
+[0] WHAT TO EXPECT
+    Entry requires candle close confirmation (above F236 for downFibo, below F236 for upFibo).
+    Break-even win rate before costs at theoretical level: 47.2% (actual depends on bar-close execution price).
+    On a pure random walk the win rate is also ~that number, so expectancy is ~0 before costs and negative after.
+    Any real edge has to come from price behaving differently at these levels, and it must beat costs.
+
+[1] THE RULE, FULL SAMPLE (no parameters were tuned for this result)
+  all trades     trades    82  win  52.4%  (needs  58.4%)  avg R -0.108  PF 0.79  return    -8.8%  CAGR   -41.3%  maxDD    -9.0%  Sharpe -2.58
+  longs          trades    43  win  58.1%  (needs  57.4%)  avg R +0.015  PF 1.03  return     0.4%  CAGR     2.6%  maxDD    -4.1%  Sharpe +0.23
+  shorts         trades    39  win  46.2%  (needs  59.9%)  avg R -0.243  PF 0.57  return    -9.2%  CAGR   -42.8%  maxDD    -9.2%  Sharpe -4.21
+    Buy & hold over the same period:    -4.3%.  Average trade lasts 0.3 days; longest losing streak 5.
+    Exits: tp 43, sl 39
+
+[2] CHRONOLOGICAL HALVES (rule fixed in advance; first 70% vs last 30%)
+  first 70%      trades    53  win  50.9%  (needs  57.6%)  avg R -0.122  PF 0.77  return    -6.5%  CAGR   -41.8%  maxDD    -9.0%  Sharpe -3.11
+  last 30%       trades    29  win  55.2%  (needs  59.8%)  avg R -0.082  PF 0.83  return    -2.5%  CAGR   -41.7%  maxDD    -5.7%  Sharpe -1.73
+
+[3] BY YEAR (by entry date)
+    2026:   82 trades  win  52.4%  avg R -0.108  return    -8.8%
+
+[4] SENSITIVITY (is this a plateau or a lucky spike?) - avg R per trade after costs; not for picking settings
+    period     E0.236/T0.5   E0.236/T0.618   E0.382/T0.618   E0.382/T0.786
+        34    -0.174 (174)    -0.193 (167)    -0.117 (143)    -0.104 (124)
+        55    -0.149 (120)    -0.126 (117)     -0.074 (96)     -0.067 (79)
+        89     -0.197 (86)     -0.205 (78)     -0.086 (72)     -0.002 (54)
+       100     -0.108 (82)     -0.131 (72)     -0.109 (65)     -0.042 (48)
+       144     -0.100 (60)     -0.119 (44)     -0.040 (38)     +0.099 (31)
+       200     -0.022 (42)     -0.027 (32)     +0.012 (25)     +0.068 (19)
+       300     -0.101 (29)     -0.028 (23)     -0.076 (24)     +0.046 (14)
+    14% of these settings have positive average R. A real edge usually shows up across most of the grid.
+
+[5] COST STRESS
+    0x costs: avg R -0.047   return    -4.1%   maxDD    -6.4%
+    1x costs: avg R -0.108   return    -8.8%   maxDD    -9.0%
+    2x costs: avg R -0.168   return   -13.2%   maxDD   -13.2%
+    3x costs: avg R -0.228   return   -17.4%   maxDD   -17.4%
+
+[6] MONTE CARLO (trade order reshuffled)
+    Final return 5th   -20.2%  median    -8.6%  95th     4.5%
+    Max drawdown worst-5%   -22.2%  median   -12.7%   P(drawdown > 30%) = 0%   P(ends down) = 86%
+
+[7] RANDOM-TIMING TEST (100 runs: same side and same stop/target distances, random entry times)
+    Actual avg R -0.108  vs random timing: mean -0.051, 95th pct +0.104, p = 0.733
+    Small p = the Fibonacci timing beats random entries with identical reward/risk (and identical long/short mix).
+
+====================================================================================================
+RED FLAGS:
+  - average R after costs is -0.108 (not positive)
+  - win rate 52.4% is below the 58.4% needed to break even
+  - only 82 trades - too few to conclude
+  - longs and shorts disagree (one side carries it) - could just be market drift, not the rule
+  - not distinguishable from random entry timing (p=0.73)
+  - falls to zero or below if costs are 2x
+  - fewer than half of nearby settings are profitable (no plateau)
+====================================================================================================
