@@ -1,0 +1,136 @@
+Loading 3-year Gold M15 dataset (XAUUSD_M15_History.csv)...
+Loaded 89,481 bars from 2023-01-03 01:00:00 to 2026-10-14 23:45:00 (0.5s)
+Building H1 market structure from 3-year history...
+Built 22,405 H1 bars with zero lookahead.
+
+[Executing Strategy 1: Original SMC 100% Retracement...]
+Done in 3.2s (403 trades)
+
+====================================================================================================
+STRATEGY: 1. Original SMC Rule (100% Retrace to Sweep Origin, 1:3 RR)
+DATA:     89,481 bars, 2023-01-03 to 2026-10-14
+====================================================================================================
+
+[1] FULL SAMPLE METRICS (2023 - 2026)
+    Buy & hold over period:   124.6%. Avg trade hold: 0.5 days; longest losing streak: 14.
+    Exits: sl 299, tp 104
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+
+[3] BY YEAR BREAKDOWN
+    2023:   98 trades  win  28.6%  avg R -0.069  return    -8.0%
+    2024:  111 trades  win  26.1%  avg R -0.115  return   -11.7%
+    2025:  114 trades  win  26.3%  avg R -0.117  return    -9.9%
+    2026:   80 trades  win  21.2%  avg R -0.222  return   -17.2%
+
+[4] COST STRESS
+    0x costs: avg R +0.039   return     8.4%   maxDD   -27.7%   PF 1.05
+    1x costs: avg R -0.126   return   -39.4%   maxDD   -46.2%   PF 0.87
+    2x costs: avg R -0.290   return   -66.2%   maxDD   -68.5%   PF 0.73
+    3x costs: avg R -0.455   return   -81.1%   maxDD   -82.2%   PF 0.62
+
+[Executing Strategy 2: Liquidity Sweep Reversal...]
+Done in 2.5s (3269 trades)
+
+====================================================================================================
+STRATEGY: 2. Variation 1: Liquidity Sweep Reversal (Turtle Soup, 1:2 RR)
+DATA:     89,481 bars, 2023-01-03 to 2026-10-14
+====================================================================================================
+
+[1] FULL SAMPLE METRICS (2023 - 2026)
+    Buy & hold over period:   124.6%. Avg trade hold: 0.1 days; longest losing streak: 19.
+    Exits: sl 2231, tp 1037, open 1
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+
+[3] BY YEAR BREAKDOWN
+    2023:  775 trades  win  31.7%  avg R -0.334  return   -84.7%
+    2024:  840 trades  win  31.5%  avg R -0.328  return   -88.7%
+    2025:  938 trades  win  33.7%  avg R -0.249  return   -82.7%
+    2026:  716 trades  win  29.3%  avg R -0.323  return   -85.3%
+
+[4] COST STRESS
+    0x costs: avg R -0.052   return   -81.6%   maxDD   -86.1%   PF 0.93
+    1x costs: avg R -0.306   return  -100.0%   maxDD  -100.0%   PF 0.68
+    2x costs: avg R -0.560   return  -100.0%   maxDD  -100.0%   PF 0.51
+    3x costs: avg R -0.814   return  -100.0%   maxDD  -100.0%   PF 0.39
+
+[Executing Strategy 3: Active Leg Pullback (No Filters)...]
+Done in 2.6s (1104 trades)
+
+====================================================================================================
+STRATEGY: 3. Variation 2: Active Leg Pullback (Baseline, All Hours, 1:2 RR)
+DATA:     89,481 bars, 2023-01-03 to 2026-10-14
+====================================================================================================
+
+[1] FULL SAMPLE METRICS (2023 - 2026)
+    Buy & hold over period:   124.6%. Avg trade hold: 0.7 days; longest losing streak: 13.
+    Exits: sl 727, tp 376, open 1
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+
+[3] BY YEAR BREAKDOWN
+    2023:  282 trades  win  31.2%  avg R -0.187  return   -43.7%
+    2024:  295 trades  win  33.9%  avg R -0.096  return   -26.9%
+    2025:  321 trades  win  35.8%  avg R -0.027  return    -8.5%
+    2026:  206 trades  win  35.4%  avg R +0.010  return     0.8%
+
+[4] COST STRESS
+    0x costs: avg R +0.021   return    11.1%   maxDD   -35.6%   PF 1.03
+    1x costs: avg R -0.080   return   -62.1%   maxDD   -65.5%   PF 0.89
+    2x costs: avg R -0.180   return   -87.1%   maxDD   -87.6%   PF 0.78
+    3x costs: avg R -0.281   return   -95.6%   maxDD   -95.8%   PF 0.68
+
+[Executing Strategy 4: Active Leg Pullback + Session Filter...]
+Done in 4.2s (716 trades)
+
+====================================================================================================
+STRATEGY: 4. Variation 2 + Peak Session Filter (08:00 - 16:00 London/NY)
+DATA:     89,481 bars, 2023-01-03 to 2026-10-14
+====================================================================================================
+
+[1] FULL SAMPLE METRICS (2023 - 2026)
+    Buy & hold over period:   124.6%. Avg trade hold: 0.5 days; longest losing streak: 12.
+    Exits: sl 472, tp 243, open 1
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+
+[3] BY YEAR BREAKDOWN
+    2023:  200 trades  win  29.5%  avg R -0.233  return   -38.1%
+    2024:  204 trades  win  31.4%  avg R -0.173  return   -30.8%
+    2025:  163 trades  win  38.0%  avg R +0.030  return     4.5%
+    2026:  149 trades  win  38.9%  avg R +0.122  return    17.8%
+
+[4] COST STRESS
+    0x costs: avg R +0.019   return     6.9%   maxDD   -38.1%   PF 1.03
+    1x costs: avg R -0.082   return   -47.3%   maxDD   -60.4%   PF 0.89
+    2x costs: avg R -0.183   return   -74.0%   maxDD   -77.1%   PF 0.78
+    3x costs: avg R -0.284   return   -87.2%   maxDD   -88.3%   PF 0.68
+
+[Executing Strategy 5: Active Leg Pullback + H1 Trend + Session Filter...]
+Done in 4.0s (372 trades)
+
+====================================================================================================
+STRATEGY: 5. Variation 2 + Combined (H1 Trend + 08:00-16:00 Session)
+DATA:     89,481 bars, 2023-01-03 to 2026-10-14
+====================================================================================================
+
+[1] FULL SAMPLE METRICS (2023 - 2026)
+    Buy & hold over period:   124.6%. Avg trade hold: 0.5 days; longest losing streak: 12.
+    Exits: sl 242, tp 130
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+
+[3] BY YEAR BREAKDOWN
+    2023:   93 trades  win  32.3%  avg R -0.146  return   -13.4%
+    2024:  106 trades  win  34.0%  avg R -0.094  return   -10.5%
+    2025:   90 trades  win  32.2%  avg R -0.168  return   -13.7%
+    2026:   83 trades  win  42.2%  avg R +0.210  return    17.8%
+
+[4] COST STRESS
+    0x costs: avg R +0.044   return    13.5%   maxDD   -18.5%   PF 1.07
+    1x costs: avg R -0.057   return   -21.2%   maxDD   -34.6%   PF 0.93
+    2x costs: avg R -0.158   return   -45.4%   maxDD   -52.2%   PF 0.81
+    3x costs: avg R -0.260   return   -62.1%   maxDD   -66.1%   PF 0.71
+
+Saved comparison chart to results_3year\equity_3year.png

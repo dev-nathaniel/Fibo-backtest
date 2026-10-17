@@ -1,0 +1,25 @@
+====================================================================================================
+STRATEGY: Variation 2 - Active Leg Pullback
+DATA:     1,035 bars, 2026-08-14 to 2026-10-16
+RULES:    Risk-to-Reward 2.0:1  |  Risk 1.0% per trade, max 10.0x
+COSTS:    spread 1.5 bps, slippage 0.5 bps/side, swap -0.8/-0.3 bps/day
+====================================================================================================
+
+[0] WHAT TO EXPECT
+    Target is 2.0x stop -> Break-even win rate before costs: 33.3%.
+
+[1] FULL SAMPLE METRICS
+  all trades     trades    17  win  17.6%  (needs  33.5%)  avg R -0.471  PF 0.42  return    -7.8%  CAGR   -37.6%  maxDD    -8.5%  Sharpe -3.75
+  longs          trades     9  win  11.1%  (needs  32.9%)  avg R -0.637  PF 0.26  return    -5.6%  CAGR   -28.5%  maxDD    -6.5%  Sharpe -4.02
+  shorts         trades     8  win  25.0%  (needs  34.4%)  avg R -0.284  PF 0.63  return    -2.3%  CAGR   -12.7%  maxDD    -3.2%  Sharpe -1.40
+    Buy & hold over period:    -4.3%. Avg trade hold: 1.4 days; longest losing streak: 7.
+    Exits: sl 13, tp 3, open 1
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+  first 70%      trades    11  win  27.3%  avg R -0.219  PF 0.71  return    -2.5%  maxDD    -4.1%  Sharpe -1.48
+  last 30%       trades     6  win   0.0%  avg R -0.934  PF 0.00  return    -5.5%  maxDD    -5.5%  Sharpe -11.94
+
+[3] COST STRESS
+    0x costs: avg R -0.435   return    -7.2%   maxDD    -8.1%
+    1x costs: avg R -0.471   return    -7.8%   maxDD    -8.5%
+    2x costs: avg R -0.508   return    -8.4%   maxDD    -8.9%

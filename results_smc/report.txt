@@ -1,0 +1,59 @@
+====================================================================================================
+DATA   XAUUSDM15.csv
+       4,136 bars, 2026-08-14 to 2026-10-16
+RULE   SMC Continuation: Sweep -> BOS 1 -> Fib 50% Retrace -> BOS 2 -> Demand/Supply Zone (1:3.0 RR)
+       Swing pivot: L=3, R=3 | SL buffer: $0.50 | Risk: 1.0% per trade, max 10.0x
+COSTS  spread 1.5 bps, slippage 0.5 bps/side, swap -0.8/-0.3 bps/day (long/short)
+====================================================================================================
+
+[0] WHAT TO EXPECT
+    Target is 3.0x the stop distance -> reward/risk ratio 3.00:1.
+    Theoretical break-even win rate before costs: 25.0%.
+    On a pure random walk, win rate is ~that number; expectancy is ~0 before costs and negative after.
+    Any real edge has to come from structural demand/supply zone liquidity sweeps, and must beat costs.
+
+[1] THE RULE, FULL SAMPLE (no parameters were tuned for this result)
+  all trades     trades    17  win   5.9%  (needs  27.4%)  avg R -0.858  PF 0.17  return   -13.7%  CAGR   -57.4%  maxDD   -13.7%  Sharpe -7.75
+  longs          trades    10  win   0.0%  (needs 100.0%)  avg R -1.096  PF 0.00  return   -10.4%  CAGR   -47.2%  maxDD   -10.4%  Sharpe -7.36
+  shorts         trades     7  win  14.3%  (needs  27.3%)  avg R -0.518  PF 0.44  return    -3.6%  CAGR   -19.3%  maxDD    -4.2%  Sharpe -2.15
+    Buy & hold over the same period:    -4.3%.  Average trade lasts 0.3 days; longest losing streak 11.
+    Exits: sl 16, tp 1
+
+[2] CHRONOLOGICAL HALVES (rule fixed in advance; first 70% vs last 30%)
+  first 70%      trades    12  win   8.3%  (needs  27.2%)  avg R -0.752  PF 0.24  return    -8.7%  CAGR   -52.3%  maxDD   -11.3%  Sharpe -6.47
+  last 30%       trades     5  win   0.0%  (needs 100.0%)  avg R -1.112  PF 0.00  return    -5.4%  CAGR   -69.9%  maxDD    -5.4%  Sharpe -10.83
+
+[3] BY YEAR (by entry date)
+    2026:   17 trades  win   5.9%  avg R -0.858  return   -13.7%
+
+[4] SENSITIVITY (varying pivot window L, R and SL buffer) - avg R per trade after costs
+    Pivots (L, R) \ SL Buffer         $0.25         $0.50         $1.00
+    L=2, R=2                 -0.151 (29)   -0.396 (28)   -0.390 (28)
+    L=3, R=3                 -0.621 (17)   -0.858 (17)   -0.854 (17)
+    L=4, R=4                 -0.753 (12)   -1.089 (12)   -1.085 (12)
+    L=5, R=5                 -0.722 (11)   -1.089 (11)   -1.085 (11)
+    0% of these settings have positive average R.
+
+[5] COST STRESS
+    0x costs: avg R -0.765   return   -12.3%   maxDD   -12.3%
+    1x costs: avg R -0.858   return   -13.7%   maxDD   -13.7%
+    2x costs: avg R -0.951   return   -15.1%   maxDD   -15.1%
+    3x costs: avg R -1.045   return   -16.4%   maxDD   -16.4%
+
+[6] MONTE CARLO (trade order reshuffled)
+    Final return 5th   -17.2%  median   -13.7%  95th    -6.6%
+    Max drawdown worst-5%   -17.2%  median   -14.1%   P(drawdown > 30%) = 0%   P(ends down) = 100%
+
+[7] RANDOM-TIMING TEST (100 runs: same side and same stop/target distances, random entry times)
+    Actual avg R -0.858  vs random timing: mean -0.142, 95th pct +0.554, p = 0.960
+    Small p = SMC entry timing beats random entries with identical reward/risk.
+
+====================================================================================================
+RED FLAGS:
+  - average R after costs is -0.858 (not positive)
+  - win rate 5.9% is below the 27.4% needed to break even
+  - only 17 trades - small sample size
+  - not distinguishable from random entry timing (p=0.96)
+  - falls to zero or below if costs are 2x
+  - fewer than half of nearby settings are profitable
+====================================================================================================

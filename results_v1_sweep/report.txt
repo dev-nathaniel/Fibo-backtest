@@ -1,0 +1,25 @@
+====================================================================================================
+STRATEGY: Variation 1 - Liquidity Sweep Reversal
+DATA:     1,035 bars, 2026-08-14 to 2026-10-16
+RULES:    Risk-to-Reward 2.0:1  |  Risk 1.0% per trade, max 10.0x
+COSTS:    spread 1.5 bps, slippage 0.5 bps/side, swap -0.8/-0.3 bps/day
+====================================================================================================
+
+[0] WHAT TO EXPECT
+    Target is 2.0x stop -> Break-even win rate before costs: 33.3%.
+
+[1] FULL SAMPLE METRICS
+  all trades     trades    45  win  31.1%  (needs  38.0%)  avg R -0.201  PF 0.76  return    -8.0%  CAGR   -38.3%  maxDD    -9.8%  Sharpe -2.37
+  longs          trades    21  win  23.8%  (needs  39.9%)  avg R -0.436  PF 0.47  return    -8.9%  CAGR   -41.8%  maxDD   -12.7%  Sharpe -3.60
+  shorts         trades    24  win  37.5%  (needs  37.4%)  avg R +0.004  PF 1.08  return     1.0%  CAGR     5.9%  maxDD    -4.6%  Sharpe +0.45
+    Buy & hold over period:    -4.3%. Avg trade hold: 0.4 days; longest losing streak: 4.
+    Exits: sl 31, tp 13, open 1
+
+[2] CHRONOLOGICAL HALVES (first 70% vs last 30%)
+  first 70%      trades    30  win  26.7%  avg R -0.299  PF 0.66  return    -7.8%  maxDD    -9.8%  Sharpe -3.35
+  last 30%       trades    15  win  40.0%  avg R -0.005  PF 0.99  return    -0.2%  maxDD    -4.4%  Sharpe -0.07
+
+[3] COST STRESS
+    0x costs: avg R -0.100   return    -4.0%   maxDD    -8.2%
+    1x costs: avg R -0.201   return    -8.0%   maxDD    -9.8%
+    2x costs: avg R -0.302   return   -11.8%   maxDD   -12.8%
